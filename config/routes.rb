@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
+resources :todo_lists do
+   resources :todo_items
+  end
+
   resources :lists, only: [:create, :destroy] do
     resources :tasks, except: [:new, :edit, :show]
   end
 
   get 'environment', to: 'environment#index'
 
-  root "tasks#index"
+  root "todo_lists#index"
+
 end
